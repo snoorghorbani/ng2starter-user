@@ -1,0 +1,109 @@
+import { NgModule, ModuleWithProviders } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule, Routes } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {
+	MatExpansionModule,
+	MatSnackBarModule,
+	MatIconModule,
+	MatButtonModule,
+	MatCardModule,
+	MatSelectModule,
+	MatInputModule,
+	MatFormFieldModule,
+	MatTabsModule,
+	MatRadioModule
+} from "@angular/material";
+
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule, mergeEffects } from "@ngrx/effects";
+
+import { SharedModule } from "@soushians/shared";
+import { AuthenticationModule } from "@soushians/authentication";
+
+import { RoutingModule } from "./user-routing.module";
+import { UserModuleConfig, MODULE_CONFIG_TOKEN } from "./user.config";
+import { InfraModule } from "@soushians/infra";
+
+import { PasswordService, UserService, UserConfigurationService } from "./services";
+import { UserReducers } from "./feature";
+import { UserEffects } from "./feature";
+import { ProfileComponent, ProfileViewEffects, ProfileContainerComponent } from "./profile-view";
+import { ChangePasswordComponent, ChangePasswordEffects, ChangePasswordContainerComponent } from "./change-password";
+import { ProfileEditComponent, EditProfileEffects, ProfileEditContainerComponent } from "./profile-edit";
+import { ResetPasswordRequestComponent, ResetPasswordRequestEffects } from "./reset-password";
+import { SearchEffects, SearchComponent } from "./search-account";
+import { DashboardLinksComponent, DashboardContainerComponent } from "./dashboard";
+import { FeatureContainerComponent } from "./feature";
+
+@NgModule({
+	imports: [
+		HttpClientModule,
+		InfraModule,
+		FormsModule,
+		RouterModule,
+		CommonModule,
+		MatExpansionModule,
+		MatSnackBarModule,
+		MatIconModule,
+		MatButtonModule,
+		MatCardModule,
+		MatSelectModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatTabsModule,
+		FlexLayoutModule,
+		MatRadioModule,
+		ReactiveFormsModule,
+		AuthenticationModule,
+		BrowserAnimationsModule
+	],
+	declarations: [
+		SearchComponent,
+		ProfileComponent,
+		ChangePasswordComponent,
+		ProfileEditComponent,
+		ProfileContainerComponent,
+		DashboardLinksComponent,
+		ResetPasswordRequestComponent,
+		FeatureContainerComponent,
+		DashboardContainerComponent,
+		ChangePasswordContainerComponent,
+		ProfileEditContainerComponent
+	],
+	exports: []
+})
+export class UserModule {
+	static forRoot(config: UserModuleConfig): ModuleWithProviders {
+		return {
+			ngModule: RootUserModule,
+			providers: [
+				{ provide: MODULE_CONFIG_TOKEN, useValue: config },
+				UserConfigurationService,
+				PasswordService,
+				UserService
+			]
+		};
+	}
+}
+
+@NgModule({
+	imports: [
+		UserModule,
+		StoreModule.forFeature("user", UserReducers),
+		EffectsModule.forFeature([
+			ResetPasswordRequestEffects,
+			EditProfileEffects,
+			ChangePasswordEffects,
+			ProfileViewEffects,
+			SearchEffects,
+			UserEffects
+		]),
+		RoutingModule
+	]
+})
+export class RootUserModule {}
