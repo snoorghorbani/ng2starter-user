@@ -33,7 +33,7 @@ export class ProfileEditContainerComponent implements OnInit {
 		this.appConfig = this.store.select(getAppConfig);
 		// TODO:
 		// this.groups = this.diagramService.getGroups();
-		this.groups = Observable.of(["test1","test2"]);
+		this.groups = Observable.of([ "test1", "test2" ]);
 	}
 
 	ngOnInit() {

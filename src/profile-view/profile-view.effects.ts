@@ -16,7 +16,7 @@ import { RefreshUserInfoAction } from "../dashboard";
 
 @Injectable()
 export class ProfileViewEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private userService: UserService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private userService: UserService) {}
 
 	@Effect()
 	ProfileRequest$ = this.actions$
@@ -29,6 +29,7 @@ export class ProfileViewEffects {
 		.ofType(ProfileViewActionTypes.GET_PROFILE_START)
 		.map(toPayload)
 		.switchMap((data: EditProfile_ApiModel.Request) => {
+			debugger;
 			return this.userService
 				.getProfileInformation()
 				.map((res) => new GetProfileSucceed(res))

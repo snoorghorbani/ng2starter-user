@@ -22,10 +22,8 @@ import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
-import { SharedModule } from "@soushians/shared";
 import { AuthenticationModule } from "@soushians/authentication";
 
-import { RoutingModule } from "./user-routing.module";
 import { UserModuleConfig, MODULE_CONFIG_TOKEN } from "./user.config";
 import { InfraModule } from "@soushians/infra";
 
@@ -77,10 +75,10 @@ import { FeatureContainerComponent } from "./feature";
 	],
 	exports: []
 })
-export class UserModule {
+export class NgsUserModule {
 	static forRoot(config: UserModuleConfig): ModuleWithProviders {
 		return {
-			ngModule: RootUserModule,
+			ngModule: RootNgsUserModule,
 			providers: [
 				{ provide: MODULE_CONFIG_TOKEN, useValue: config },
 				UserConfigurationService,
@@ -93,7 +91,7 @@ export class UserModule {
 
 @NgModule({
 	imports: [
-		UserModule,
+		NgsUserModule,
 		StoreModule.forFeature("user", UserReducers),
 		EffectsModule.forFeature([
 			ResetPasswordRequestEffects,
@@ -102,8 +100,8 @@ export class UserModule {
 			ProfileViewEffects,
 			SearchEffects,
 			UserEffects
-		]),
-		RoutingModule
+		])
+		// RoutingModule
 	]
 })
-export class RootUserModule {}
+export class RootNgsUserModule {}

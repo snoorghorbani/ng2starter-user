@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from "@angular/core";
 import { UserModuleConfig } from "./user.config";
-export declare class UserModule {
+export declare class NgsUserModule {
     static forRoot(config: UserModuleConfig): ModuleWithProviders;
 }
-export declare class RootUserModule {
+export declare class RootNgsUserModule {
 }

@@ -7,7 +7,7 @@ import { ChangePasswordContainerComponent } from "./change-password";
 import { SearchComponent } from "./search-account";
 import { FeatureContainerComponent } from "./feature";
 
-const routes: Routes = [
+export const routes: Routes = [
 	{
 		path: "user/panel",
 		component: DashboardContainerComponent,

@@ -23,7 +23,7 @@ import { GetProfile } from "../profile-view";
 
 @Injectable()
 export class EditProfileEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private service: UserService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private service: UserService) {}
 
 	@Effect()
 	EditProfileRequest$ = this.actions$
@@ -46,9 +46,8 @@ export class EditProfileEffects {
 	// });
 
 	@Effect()
-	goToView$ = this.actions$.ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED)
-		.map(() => {
-			this.router.navigate(["/user/profile"]);
-			return new GetProfile();
-		});
+	goToView$ = this.actions$.ofType(EditProfileActionTypes.EDIT_PROFILE_SUCCEED).map(() => {
+		this.router.navigate([ "/user/profile" ]);
+		return new GetProfile();
+	});
 }
