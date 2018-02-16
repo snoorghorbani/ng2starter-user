@@ -13,7 +13,7 @@
 		"typeRoots": ["node_modules/@types"],
 		"types": ["node"],
 		"lib": ["es2015", "dom"],
-		// "skipLibCheck": true
+		"skipLibCheck": true
 	},
 	"include": [
 	  "index.ts"

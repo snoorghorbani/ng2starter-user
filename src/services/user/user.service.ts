@@ -6,7 +6,7 @@ import { UserModel, EditProfile_ApiModel, ProfileViewModel, FailedLoginReportMod
 import { UserConfigurationService } from "../../services/user-module-configuration";
 import { Store } from "@ngrx/store";
 
-import * as userReducers from "../../feature/feature.reducers";
+// import * as userReducers from "../../feature/feature.reducers";
 import { GetProfile } from "../../profile-view/profile-view.actions";
 import { stringTemplate } from "@soushians/infra";
 
@@ -16,7 +16,7 @@ export class UserService {
 
 	constructor(
 		private http: HttpClient,
-		private store: Store<userReducers.FeatureState>,
+		private store: Store<any>,
 		private configurationService: UserConfigurationService
 	) {
 		setTimeout(() => {

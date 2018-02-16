@@ -1,6 +1,27 @@
 import { createSelector, createFeatureSelector, MemoizedSelector } from "@ngrx/store";
 import { UserModel, ProfileViewModel } from "../models";
-export { UserModel, ProfileViewModel };
+import {
+	ChangePassword,
+	ChangePasswordFailed,
+	ChangePasswordStart,
+	ChangePasswordSucceed
+} from "../change-password/index";
+import { ClearSearchedUser, Search } from "../index";
+import {
+	DisableGetLink,
+	EnableGetLink,
+	GetResetPasswordLink,
+	MaximumTryHappend,
+	PasswordChangedFailed,
+	PasswordChangedSucceed,
+	ResetPasswordLinkRequestFailed,
+	ResetPasswordLinkRequestStart,
+	ResetPasswordLinkRequestSucceed
+} from "../reset-password/index";
+import { EditProfile, EditProfileFailed, EditProfileStart, EditProfileSucceed } from "../profile-edit/index";
+import { RefreshUserInfoAction, UserSelectedAction } from "../dashboard/index";
+import { SearchFailed, SearchStartAction, SearchSucceed } from "../search-account/index";
+
 //TODO : remove these lines
 //import {
 //        Login, LoginSuccess, LoginFailure, LoginRedirect, LogoutAction
@@ -13,7 +34,7 @@ import * as changePassword from "../change-password/change-password.reducer";
 import * as editProfileReducer from "../profile-edit/edit-profile.reducer";
 import * as searchReducer from "../search-account/search.reducer";
 
-interface UserState {
+export interface UserState {
 	user: userReducer.State;
 	resetPasswordRequest: resetPasswordRequestReducer.State;
 	searchView: searchReducer.State;
@@ -21,7 +42,7 @@ interface UserState {
 	editProfile: editProfileReducer.State;
 }
 
-const UserReducers: any = {
+export const UserReducers = {
 	user: userReducer.userReducer,
 	resetPasswordRequest: resetPasswordRequestReducer.reducer,
 	changePassword: changePassword.reducer,
@@ -29,13 +50,13 @@ const UserReducers: any = {
 	editProfile: editProfileReducer.reducer
 };
 
-interface FeatureState {
+export interface FeatureState {
 	"user": UserState;
 }
 
 //#region selectors
 
-const selectFeatureState = createFeatureSelector<UserState>("user");
+export const selectFeatureState = createFeatureSelector<UserState>("user");
 
 export const getUserInforamtionStatus = createSelector(selectFeatureState, (state: UserState) => state.user.loaded);
 export const isSignedIn = createSelector(selectFeatureState, (state: UserState) => state.user.loaded);

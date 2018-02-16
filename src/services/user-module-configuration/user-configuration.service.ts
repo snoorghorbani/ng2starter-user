@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 
 import { UserModuleConfig } from "../../user.config";
 import { MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../../user.config";
-import { UserState } from "../../feature/feature.reducers";
+// import { UserState } from "../../feature/feature.reducers";
 import { getUserModuleConfig } from "@soushians/config";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
@@ -16,7 +16,7 @@ export class UserConfigurationService {
 	}
 	config$ = new BehaviorSubject(this._config);
 
-	constructor(@Inject(MODULE_CONFIG_TOKEN) configFile, private store: Store<UserState>) {
+	constructor(@Inject(MODULE_CONFIG_TOKEN) configFile, private store: Store<any>) {
 		this._config = Object.assign({}, MODULE_DEFAULT_CONFIG, configFile);
 		this.config$.next(this._config);
 		this.store.select(getUserModuleConfig).subscribe((userConfig) => {

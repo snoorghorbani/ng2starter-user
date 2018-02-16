@@ -15,7 +15,7 @@ export class PasswordService {
 
 	constructor(
 		private http: HttpClient,
-		private store: Store<FeatureReducer.FeatureState>,
+		private store: Store<any>,
 		private userConfigurationService: UserConfigurationService
 	) {
 		this.numberOfRequeseted$ = this.store.select(FeatureReducer.getNumberOfRequeseted);

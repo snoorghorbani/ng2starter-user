@@ -22,5 +22,5 @@ export class ProfileContainerComponent implements OnInit {
 		this.dataStatus$ = this.store.select(FeatureReducer.getUserInforamtionStatus);
 	}
 
-	ngOnInit() { }
+	ngOnInit() {}
 }

@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
-import * as FeatureReducer from "../../feature/feature.reducers";
 import { ResetPasswordModel, ResetPasswordRequestModel, ChangePasswordModel } from "../../models";
 import { UserConfigurationService } from "../user-module-configuration";
 export declare class PasswordService {
@@ -9,7 +8,7 @@ export declare class PasswordService {
     private store;
     private userConfigurationService;
     numberOfRequeseted$: Observable<number>;
-    constructor(http: HttpClient, store: Store<FeatureReducer.FeatureState>, userConfigurationService: UserConfigurationService);
+    constructor(http: HttpClient, store: Store<any>, userConfigurationService: UserConfigurationService);
     isValidResetPasswordRequest(): Observable<boolean>;
     isValidResetPasswordReset(data: ResetPasswordModel.Request): Observable<any>;
     requestResetPasswordLink(data: ResetPasswordRequestModel.Request): Observable<any>;
