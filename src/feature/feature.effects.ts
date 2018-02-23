@@ -14,11 +14,10 @@ import { GetProfile } from "../profile-view";
 
 @Injectable()
 export class UserEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private service: UserService) { }
+	constructor(private actions$: Actions<any>, private router: Router, private service: UserService) {}
 
 	@Effect()
 	getProfileInformation$ = this.actions$.ofType(SignInActionTypes.SIGNIN_SUCCEED).map(() => {
-		debugger;
 		return new GetProfile();
 	});
 }

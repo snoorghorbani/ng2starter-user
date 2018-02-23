@@ -9,6 +9,7 @@ import { Store } from "@ngrx/store";
 // import * as userReducers from "../../feature/feature.reducers";
 import { GetProfile } from "../../profile-view/profile-view.actions";
 import { stringTemplate } from "@soushians/infra";
+import { getUser } from "../../index";
 
 @Injectable()
 export class UserService {
@@ -47,5 +48,13 @@ export class UserService {
 			.get(stringTemplate(this.configurationService.config.endpoints.getUserInfo, model))
 			.do((response: ProfileViewModel.Response) => (this.responseCache = response))
 			.map((response) => response);
+	}
+
+	is_role(role: string): Observable<boolean> {
+		return this.store
+			.select(getUser)
+			.filter((user) => user && user.Roles != undefined)
+			.take(1)
+			.map((user) => user.Roles.indexOf(role) > -1);
 	}
 }

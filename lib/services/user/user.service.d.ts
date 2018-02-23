@@ -12,4 +12,5 @@ export declare class UserService {
     getProfileInformation(): Observable<ProfileViewModel.Response>;
     editProfile(data: EditProfile_ApiModel.Request): Observable<UserModel>;
     getInfo(data: ProfileViewModel.Request): Observable<any>;
+    is_role(role: string): Observable<boolean>;
 }

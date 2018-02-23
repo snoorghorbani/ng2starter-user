@@ -5,8 +5,7 @@ import { Store } from "@ngrx/store";
 
 import * as appReducer from "../../feature/feature.reducers";
 // import * as authReducer from "@soushians/authentication/reducers";
-import * as authReducer from "@soushians/authentication";
-import { SigninService } from "@soushians/authentication";
+// import * as authReducer from "@soushians/authentication";
 
 @Component({
 	selector: "user-dashboard-container",
@@ -16,8 +15,8 @@ import { SigninService } from "@soushians/authentication";
 export class DashboardContainerComponent implements OnInit {
 	user$: Observable<UserModel>;
 	// is_agent : Observable<boolean>;
-	constructor(private store: Store<appReducer.UserState>, public signinService: SigninService) {
-		this.user$ = this.store.select(authReducer.getUser);
+	constructor(private store: Store<appReducer.UserState>) {
+		this.user$ = this.store.select(appReducer.getUser);
 		// this.is_agent = signinService.is_agent();
 	}
 

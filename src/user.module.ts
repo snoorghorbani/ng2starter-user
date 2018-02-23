@@ -22,7 +22,7 @@ import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
-import { AuthenticationModule } from "@soushians/authentication";
+// import { NgsAuthenticationModule } from "@soushians/authentication";
 
 import { UserModuleConfig, MODULE_CONFIG_TOKEN } from "./user.config";
 import { InfraModule } from "@soushians/infra";
@@ -57,7 +57,7 @@ import { FeatureContainerComponent } from "./feature";
 		FlexLayoutModule,
 		MatRadioModule,
 		ReactiveFormsModule,
-		AuthenticationModule,
+		// NgsAuthenticationModule,
 		BrowserAnimationsModule
 	],
 	declarations: [
