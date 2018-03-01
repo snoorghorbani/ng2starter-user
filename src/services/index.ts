@@ -1,3 +1,3 @@
-﻿export * from "./password";
-export * from "./user";
-export * from "./user-module-configuration";
+﻿export * from "./password.service";
+export * from "./user.service";
+export * from "./user-configuration.service";

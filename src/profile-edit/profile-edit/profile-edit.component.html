@@ -1,8 +1,11 @@
 ﻿<div fxFlex="450px">
+
+  
   <form [formGroup]="formGroup" (ngSubmit)="editProfile()" fxLayout="column">
     <mat-card>
       <mat-card-content>
-        <mat-form-field fxFlexFill>
+          <ngs-form-view [id]="formId"></ngs-form-view>
+        <!-- <mat-form-field fxFlexFill>
           <input type="text" matInput placeholder="پست الکترونیکی" formControlName="Email">
         </mat-form-field>
         <mat-form-field>
@@ -13,7 +16,7 @@
                 (+{{formGroup.controls.Roles.value.length - 1}} others)
               </span>
             </mat-select-trigger>
-            <mat-option *ngFor="let item of roles" [value]="item">{{item}}</mat-option>
+            <mat-option *ngFor="let item of roles$ | async" [value]="item">{{item}}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
@@ -26,7 +29,7 @@
             </mat-select-trigger>
             <mat-option *ngFor="let item of groups" [value]="item">{{item}}</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </mat-card-content>
       <mat-card-actions fxLayoutAlign="center center">
         <button fxFlex="nogrow" type="submit" mat-raised-button color="primary">ویرایش</button>

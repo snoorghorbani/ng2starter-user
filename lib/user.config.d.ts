@@ -6,6 +6,9 @@ export interface UserModuleConfig {
         getUserInfo: string;
         profileInformation: string;
     };
+    forms: {
+        profile_edit: string;
+    };
 }
 export declare const MODULE_DEFAULT_CONFIG: UserModuleConfig;
 export declare const MODULE_CONFIG_TOKEN: InjectionToken<UserModuleConfig>;

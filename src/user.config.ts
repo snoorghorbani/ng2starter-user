@@ -9,6 +9,9 @@ export interface UserModuleConfig {
 		profileInformation: string;
 		// resetPassword: string;
 	};
+	forms: {
+		profile_edit: string;
+	};
 }
 
 export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
@@ -19,6 +22,9 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 		getUserInfo: "",
 		profileInformation: ""
 		// resetPassword: '',
+	},
+	forms: {
+		profile_edit: ""
 	}
 };
 

@@ -1,5 +1,5 @@
-import { responseStatusTypes } from "@soushians/shared";
-import { EditProfileAction } from "./edit-profile.actions";
+import { responseStatusTypes } from '@soushians/shared';
+import { EditProfileAction } from './edit-profile.actions';
 export interface State {
     status: responseStatusTypes;
 }

@@ -2,14 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 
-import { UserModel, EditProfile_ApiModel, ProfileViewModel, FailedLoginReportModel } from "../../models";
-import { UserConfigurationService } from "../../services/user-module-configuration";
+import { UserModel, EditProfile_ApiModel, ProfileViewModel, FailedLoginReportModel } from "../models";
+import { UserConfigurationService } from "./user-configuration.service";
 import { Store } from "@ngrx/store";
 
 // import * as userReducers from "../../feature/feature.reducers";
-import { GetProfile } from "../../profile-view/profile-view.actions";
+import { GetProfile } from "../profile-view/profile-view.actions";
 import { stringTemplate } from "@soushians/infra";
-import { getUser } from "../../index";
+import { getUser } from "../index";
 
 @Injectable()
 export class UserService {
@@ -27,9 +27,9 @@ export class UserService {
 
 	getProfileInformation(): Observable<ProfileViewModel.Response> {
 		return this.configurationService.config$
-			.filter((config) => config.endpoints.profileInformation != "")
+			.filter(config => config.endpoints.profileInformation != "")
 			.take(1)
-			.switchMap((config) => this.http.get(config.endpoints.profileInformation))
+			.switchMap(config => this.http.get(config.endpoints.profileInformation))
 			.map((response: UserModel) => response);
 	}
 	editProfile(data: EditProfile_ApiModel.Request): Observable<UserModel> {
@@ -47,14 +47,14 @@ export class UserService {
 		return this.http
 			.get(stringTemplate(this.configurationService.config.endpoints.getUserInfo, model))
 			.do((response: ProfileViewModel.Response) => (this.responseCache = response))
-			.map((response) => response);
+			.map(response => response);
 	}
 
 	is_role(role: string): Observable<boolean> {
 		return this.store
 			.select(getUser)
-			.filter((user) => user && user.Roles != undefined)
+			.filter(user => user && user.Roles != undefined)
 			.take(1)
-			.map((user) => user.Roles.indexOf(role) > -1);
+			.map(user => user.Roles.indexOf(role) > -1);
 	}
 }

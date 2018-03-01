@@ -2,16 +2,19 @@ import { OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { FormGroup } from "@angular/forms";
 import { Store } from "@ngrx/store";
-import { ConfigModel } from "@soushians/config";
 import { UserModel } from "../../models";
 import * as FeatureReducer from "../../feature/feature.reducers";
+import { UserConfigurationService } from "../../services";
+import { UserModuleConfig } from "../../user.config";
 export declare class ProfileEditContainerComponent implements OnInit {
     private store;
+    private configService;
     userInforamation$: Observable<UserModel>;
     formGroup: FormGroup;
-    appConfig: Observable<ConfigModel<any>>;
+    roles$: Observable<string[]>;
     groups: Observable<string[]>;
-    constructor(store: Store<FeatureReducer.FeatureState>);
+    config$: Observable<UserModuleConfig>;
+    constructor(store: Store<FeatureReducer.FeatureState>, configService: UserConfigurationService);
     ngOnInit(): void;
     updateProfile(data: any): void;
 }

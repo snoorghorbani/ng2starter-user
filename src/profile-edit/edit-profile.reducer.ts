@@ -1,37 +1,37 @@
-﻿import { responseStatusTypes } from "@soushians/shared";
-import { EditProfileAction, EditProfileActionTypes } from "./edit-profile.actions";
+﻿import { responseStatusTypes } from '@soushians/shared';
+import { EditProfileAction, EditProfileActionTypes } from './edit-profile.actions';
 
 export interface State {
 	status: responseStatusTypes;
 }
 export const initialState: State = {
-	status: "pristine"
+	status: 'pristine'
 };
 export function reducer(state = initialState, action: EditProfileAction): State {
 	switch (action.type) {
 		case EditProfileActionTypes.EDIT_PROFILE: {
 			return {
-				status: "dirty"
+				status: 'dirty'
 			};
 		}
 		case EditProfileActionTypes.EDIT_PROFILE_START: {
 			return {
-				status: "pending"
+				status: 'pending'
 			};
 		}
 		case EditProfileActionTypes.EDIT_PROFILE_SUCCEED: {
 			return {
-				status: "succeed"
+				status: 'succeed'
 			};
 		}
 		case EditProfileActionTypes.EDIT_PROFILE_FAILED: {
 			return {
-				status: "failed"
+				status: 'failed'
 			};
 		}
 
 		default: {
-			return initialState;
+			return state;
 		}
 	}
 }

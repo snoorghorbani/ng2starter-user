@@ -1,25 +1,27 @@
-﻿import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+﻿import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 
 import { FormGroup } from "@angular/forms";
 import { ChangePasswordModel } from "../../models";
 import { UtilityService } from "@soushians/infra";
-import { ConfigModel } from '@soushians/config';
+import { ConfigModel } from "@soushians/config";
+import { Observable } from "rxjs/Observable";
 
 @Component({
-    selector: 'profile-edit',
-    templateUrl: './profile-edit.component.html'
+	selector: "profile-edit",
+	templateUrl: "./profile-edit.component.html"
 })
 export class ProfileEditComponent implements OnInit {
-    @Output() submited = new EventEmitter();
+	@Output() submited = new EventEmitter();
 
-    @Input() formGroup: FormGroup;
-    @Input() roles: string[];
-    @Input() groups: string[];
-    constructor(private utilityService: UtilityService) { }
+	@Input() formId: string;
+	@Input() formGroup: FormGroup;
+	@Input("roles") roles$: Observable<string[]>;
+	@Input() groups: string[];
+	constructor(private utilityService: UtilityService) {}
 
-    ngOnInit() { }
-    editProfile() {
-        if (!this.formGroup.valid) return;
-        this.submited.emit(this.formGroup.value)
-    }
+	ngOnInit() {}
+	editProfile() {
+		if (!this.formGroup.valid) return;
+		this.submited.emit(this.formGroup.value);
+	}
 }

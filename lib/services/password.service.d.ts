@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
-import { ResetPasswordModel, ResetPasswordRequestModel, ChangePasswordModel } from "../../models";
-import { UserConfigurationService } from "../user-module-configuration";
+import { ResetPasswordModel, ResetPasswordRequestModel, ChangePasswordModel } from "../models";
+import { UserConfigurationService } from "./user-configuration.service";
 export declare class PasswordService {
     private http;
     private store;

@@ -17,31 +17,28 @@ import {
 	MatTabsModule,
 	MatRadioModule
 } from "@angular/material";
-
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { EffectsModule, mergeEffects } from "@ngrx/effects";
 
-// import { NgsAuthenticationModule } from "@soushians/authentication";
+import { InfraModule } from "@soushians/infra";
+import { NgsFormModule } from "@soushians/form";
 
 import { UserModuleConfig, MODULE_CONFIG_TOKEN } from "./user.config";
-import { InfraModule } from "@soushians/infra";
-
 import { PasswordService, UserService, UserConfigurationService } from "./services";
-import { UserReducers } from "./feature";
-import { UserEffects } from "./feature";
+import { FeatureContainerComponent, UserReducers, UserEffects } from "./feature";
 import { ProfileComponent, ProfileViewEffects, ProfileContainerComponent } from "./profile-view";
 import { ChangePasswordComponent, ChangePasswordEffects, ChangePasswordContainerComponent } from "./change-password";
 import { ProfileEditComponent, EditProfileEffects, ProfileEditContainerComponent } from "./profile-edit";
 import { ResetPasswordRequestComponent, ResetPasswordRequestEffects } from "./reset-password";
 import { SearchEffects, SearchComponent } from "./search-account";
 import { DashboardLinksComponent, DashboardContainerComponent } from "./dashboard";
-import { FeatureContainerComponent } from "./feature";
 
 @NgModule({
 	imports: [
 		HttpClientModule,
 		InfraModule,
+		NgsFormModule,
 		FormsModule,
 		RouterModule,
 		CommonModule,
@@ -57,7 +54,6 @@ import { FeatureContainerComponent } from "./feature";
 		FlexLayoutModule,
 		MatRadioModule,
 		ReactiveFormsModule,
-		// NgsAuthenticationModule,
 		BrowserAnimationsModule
 	],
 	declarations: [
@@ -76,7 +72,7 @@ import { FeatureContainerComponent } from "./feature";
 	exports: []
 })
 export class NgsUserModule {
-	static forRoot(config: UserModuleConfig): ModuleWithProviders {
+	static forRoot(config?: UserModuleConfig): ModuleWithProviders {
 		return {
 			ngModule: RootNgsUserModule,
 			providers: [
@@ -101,7 +97,6 @@ export class NgsUserModule {
 			SearchEffects,
 			UserEffects
 		])
-		// RoutingModule
 	]
 })
 export class RootNgsUserModule {}

@@ -4,10 +4,10 @@ import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Rx";
 import { Store } from "@ngrx/store";
 
-import * as FeatureReducer from "../../feature/feature.reducers";
+import * as FeatureReducer from "../feature/feature.reducers";
 
-import { ResetPasswordModel, ResetPasswordRequestModel, ChangePasswordModel } from "../../models";
-import { UserConfigurationService } from "../user-module-configuration";
+import { ResetPasswordModel, ResetPasswordRequestModel, ChangePasswordModel } from "../models";
+import { UserConfigurationService } from "./user-configuration.service";
 
 @Injectable()
 export class PasswordService {
@@ -24,7 +24,7 @@ export class PasswordService {
 	isValidResetPasswordRequest(): Observable<boolean> {
 		return this.numberOfRequeseted$
 			.take(1)
-			.switchMap((count) => (count < 3 ? Observable.of(true) : Observable.of(false)));
+			.switchMap(count => (count < 3 ? Observable.of(true) : Observable.of(false)));
 	}
 
 	isValidResetPasswordReset(data: ResetPasswordModel.Request): Observable<any> {
@@ -32,7 +32,7 @@ export class PasswordService {
 		let { Token } = model;
 		return this.http
 			.get(`http://wifi.shatel.ir/api/v1/reset/tokens/${Token}`, { withCredentials: true })
-			.map((response) => response);
+			.map(response => response);
 	}
 
 	requestResetPasswordLink(data: ResetPasswordRequestModel.Request): Observable<any> {
@@ -44,7 +44,7 @@ export class PasswordService {
 			.post(this.userConfigurationService.config.endpoints.editProfile, model.getRequestBody(), {
 				withCredentials: true
 			})
-			.map((response) => response);
+			.map(response => response);
 	}
 
 	changePassword(data: ChangePasswordModel.Request): Observable<any> {
@@ -53,7 +53,7 @@ export class PasswordService {
 			.patch("this.userConfigurationService.config.endpoints.changePassword(model)", model.getRequestBody(), {
 				withCredentials: true
 			})
-			.map((response) => response);
+			.map(response => response);
 	}
 
 	resetPassword(data: ResetPasswordModel.Request): Observable<any> {
@@ -63,7 +63,7 @@ export class PasswordService {
 			.patch(`http://wifi.shatel.ir/api/v1/reset/tokens/${Token}`, model.getRequestBody(), {
 				withCredentials: true
 			})
-			.map((response) => response);
+			.map(response => response);
 	}
 }
 

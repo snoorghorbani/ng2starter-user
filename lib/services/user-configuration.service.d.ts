@@ -1,5 +1,5 @@
 import { Store } from "@ngrx/store";
-import { UserModuleConfig } from "../../user.config";
+import { UserModuleConfig } from "../user.config";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export declare class UserConfigurationService {
     private store;

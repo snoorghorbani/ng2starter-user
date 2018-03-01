@@ -1,7 +1,8 @@
 {
 	"name": "@soushians/user",
-	"version": "2.0.11",
+	"version": "2.0.141",
 	"description": "",
+	"keywords": [ "Angular", "Starter", "MEAN", "MongoDB" ],
 	"main": "lib/index.js",
 	"typings": [ "./lib/index.d.ts" ],
 	"scripts": {
@@ -21,6 +22,7 @@
 		"@soushians/infra": "^2.x.x",
 		"@soushians/shared": "^2.x.x",
 		"@soushians/config": "^2.x.x",
+		"@soushians/form": "2.x.x",
 		"@ngrx/effects": "^4.x.x",
 		"@ngrx/router-store": "^4.x.x",
 		"@ngrx/store": "^4.x.x",
@@ -39,5 +41,17 @@
 		"url": "https://github.com/snoorghorbani/ng2starter-user.git"
 	},
 	"author": "soushians noorghorbani <snoorghorbani@gmail.com>",
+	"contributors": [
+		{
+			"name": "nono khatiri",
+			"email": "nonokhatiri@yahoo.com"
+		},
+		{
+			"name": "pegah khavarifar",
+			"email": "pegah.khf@gmail.com"
+		}
+	],
+	"config": {},
+	"publishConfig": {},
 	"license": "MIT"
 }
