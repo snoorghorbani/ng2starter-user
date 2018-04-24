@@ -1,7 +1,7 @@
 export class UserModel {
         _id: string;
-        // FirstName: string;
-        // LastName: string;
+        FirstName: string;
+        LastName: string;
         // Username: string;
         // MobileNumber: string;
         // Sex: string;

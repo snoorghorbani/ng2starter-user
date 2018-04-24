@@ -10,7 +10,7 @@ import { UserModel } from "../../models";
 @Component({
 	template: `<user-profile
                 [information]="data$"
-                [dataStatus$]='userDataStatus$'
+                [dataStatus$]='dataStatus$'
             ></user-profile>`
 })
 export class ProfileContainerComponent implements OnInit {

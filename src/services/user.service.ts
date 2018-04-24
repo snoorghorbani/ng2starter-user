@@ -9,7 +9,7 @@ import { Store } from "@ngrx/store";
 // import * as userReducers from "../../feature/feature.reducers";
 import { GetProfile } from "../profile-view/profile-view.actions";
 import { stringTemplate } from "@soushians/infra";
-import { getUser } from "../index";
+import { getUser } from "../dashboard/user.reducer";
 
 @Injectable()
 export class UserService {

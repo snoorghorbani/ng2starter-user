@@ -1,12 +1,11 @@
 import { Injectable, Inject } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs/Observable";
-
-import { UserModuleConfig } from "../user.config";
-import { MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../user.config";
-// import { UserState } from "../../feature/feature.reducers";
-import { getUserModuleConfig } from "@soushians/config";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+
+import { getUserModuleConfig } from "@soushians/config";
+
+import { UserModuleConfig, MODULE_CONFIG_TOKEN, MODULE_DEFAULT_CONFIG } from "../user.config";
+// import { UserState } from "../../feature/feature.reducers";
 
 @Injectable()
 export class UserConfigurationService {

@@ -1,7 +1,7 @@
 import { HttpRequestBaseModel } from "@soushians/shared";
 import { FormGroup } from "@angular/forms";
-import { UserModel } from './user.model';
-export declare module ProfileViewModel {
+import { UserModel } from "./user.model";
+export declare namespace ProfileViewModel {
     class Request implements HttpRequestBaseModel<Request> {
         Email: string;
         constructor(initValue?: ProfileViewModel.Request);

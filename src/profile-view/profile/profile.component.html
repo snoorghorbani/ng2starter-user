@@ -3,14 +3,14 @@
     <mat-card-header>
       <mat-card-title>اطلاعات پروفایل</mat-card-title>
     </mat-card-header>
-    <mat-card-content *ngIf='userDataStatus$ | async'>
+    <mat-card-content *ngIf='dataStatus$ | async'>
       <div class='list-item' fxFlexLayout='row'>
         <p fxFlex='40'>ایمیل</p>
-        <p fxFlex='60'>{{(userInformation | async).Email}}</p>
+        <p fxFlex='60'>{{(information | async).Email}}</p>
       </div>
       <div class='list-item' fxFlexLayout='row'>
         <p fxFlex='40'>roles</p>
-        <p fxFlex='60'>{{(userInformation | async).Roles | json}}</p>
+        <p fxFlex='60'>{{(information | async).Roles | json}}</p>
       </div>
       <!-- <div class='list-item' fxFlexLayout='row'>
         <p fxFlex='40'>نام</p>
