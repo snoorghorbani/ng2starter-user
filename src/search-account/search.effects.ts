@@ -6,6 +6,7 @@ import { ProfileViewModel } from "../models";
 import { UserService } from "../services";
 import { SearchStartAction, SearchFailed, SearchActionTypes, SearchSucceed } from "./search.actions";
 import { of } from "rxjs/observable/of";
+import { Observable } from "rxjs/observable";
 
 @Injectable()
 export class SearchEffects {

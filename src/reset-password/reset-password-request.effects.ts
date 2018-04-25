@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { Action } from "@ngrx/store";
-import { Actions, Effect, toPayload } from "@ngrx/effects";
+import { Actions, Effect } from "@ngrx/effects";
 import { of } from "rxjs/observable/of";
 import { Store } from "@ngrx/store";
 
@@ -22,20 +22,21 @@ import {
 	ResetPasswordLinkRequestFailed
 } from "./reset-password-request.actions";
 import { PasswordService } from "../services";
+import { switchMap, map, takeUntil, delay, catchError } from "rxjs/operators";
 
 @Injectable()
 export class ResetPasswordRequestEffects {
-	constructor(private actions$: Actions<any>, private router: Router, private passwordService: PasswordService) {}
+	constructor(private actions$: Actions<any>, private router: Router, private passwordService: PasswordService) { }
 
 	@Effect()
 	ResetPasswordRequest$ = this.actions$
 		.ofType(ResetPasswordRequestActionTypes.GET_RESET_PASSWORD_LINK)
-		.map(toPayload)
-		.switchMap((data: ResetPasswordRequestModel.Request) => {
-			return this.passwordService.isValidResetPasswordRequest().map((isValid: boolean) => {
-				return isValid ? new ResetPasswordLinkRequestStart(data) : new MaximumTryHappend();
-			});
-		});
+		.pipe(
+			map(action => action.payload),
+			// switchMap((data: ResetPasswordRequestModel.Request) => this.passwordService.isValidResetPasswordRequest()),
+			// map((isValid: boolean) => isValid ? new ResetPasswordLinkRequestStart(data) : new MaximumTryHappend())
+			map((data) => new ResetPasswordLinkRequestStart(data))
+		)
 
 	@Effect()
 	MaximumTryHappend$ = this.actions$
@@ -43,23 +44,26 @@ export class ResetPasswordRequestEffects {
 			ResetPasswordRequestActionTypes.MAXIMUM_TRY_HAPPEND,
 			ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_START
 		)
-		.map(() => new DisableGetLink());
+		.pipe(
+			map(() => new DisableGetLink())
+		);
 
 	@Effect()
 	enableAfterTime$ = this.actions$
 		.ofType(ResetPasswordRequestActionTypes.DISABLE_GET_LINK)
-		.takeUntil(this.actions$.ofType(ResetPasswordRequestActionTypes.MAXIMUM_TRY_HAPPEND))
-		.delay(3 * 1000)
-		.map(() => new EnableGetLink());
+		.pipe(
+			takeUntil(this.actions$.ofType(ResetPasswordRequestActionTypes.MAXIMUM_TRY_HAPPEND)),
+			delay(3 * 1000),
+			map(() => new EnableGetLink())
+		);
 
 	@Effect()
 	RequestResetPasswordLink$ = this.actions$
 		.ofType(ResetPasswordRequestActionTypes.RESET_PASSWORD_LINK_REQUEST_START)
-		.map(toPayload)
-		.switchMap((data: ResetPasswordRequestModel.Request) => {
-			return this.passwordService
-				.requestResetPasswordLink(data)
-				.map(() => new ResetPasswordLinkRequestSucceed())
-				.catch(() => Observable.of(new ResetPasswordLinkRequestFailed()));
-		});
+		.pipe(
+			map(action => action.payload),
+			switchMap((data: ResetPasswordRequestModel.Request) => this.passwordService.requestResetPasswordLink(data)),
+			map(() => new ResetPasswordLinkRequestSucceed()),
+			catchError(() => Observable.of(new ResetPasswordLinkRequestFailed()))
+		);
 }

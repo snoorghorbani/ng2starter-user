@@ -1,6 +1,6 @@
 import { OnInit } from "@angular/core";
 import { Observable } from "rxjs/Observable";
-import { UserModel } from "@soushians/authentication";
+import { UserModel } from "../../models";
 import { Store } from "@ngrx/store";
 import * as appReducer from "../../feature/feature.reducers";
 export declare class DashboardContainerComponent implements OnInit {

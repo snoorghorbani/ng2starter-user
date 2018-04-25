@@ -99,4 +99,4 @@ export class NgsUserModule {
 		])
 	]
 })
-export class RootNgsUserModule {}
+export class RootNgsUserModule { }
