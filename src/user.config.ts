@@ -12,6 +12,11 @@ export interface UserModuleConfig {
 	forms: {
 		profile_edit: string;
 	};
+	dashboardLinks: {
+		route: string;
+		icon: string;
+		title: string;
+	}[];
 }
 
 export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
@@ -25,7 +30,8 @@ export const MODULE_DEFAULT_CONFIG: UserModuleConfig = {
 	},
 	forms: {
 		profile_edit: ""
-	}
+	},
+	dashboardLinks: []
 };
 
 export const MODULE_CONFIG_TOKEN = new InjectionToken<UserModuleConfig>("UserModuleConfig");
